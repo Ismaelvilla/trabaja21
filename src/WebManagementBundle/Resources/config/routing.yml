@@ -1,0 +1,25 @@
+web_management_login:
+  path:     /
+  defaults: { _controller: WebManagementBundle:Default:index }
+
+web_management_home:
+  path:     /home
+  defaults: { _controller: WebManagementBundle:Default:home }
+
+#EMPRESAS
+empresas:
+  resource: "@WebManagementBundle/Resources/config/routing_empresas.yml"
+  prefix:   '/empresas/'
+
+#CATEGORIAS
+categorias:
+  resource: "@WebManagementBundle/Resources/config/routing_categorias.yml"
+  prefix:   '/categorias/'
+
+#TAREAS
+tareas:
+  resource: "@WebManagementBundle/Resources/config/routing_tareas.yml"
+  prefix:   '/tareas/'
+
+
+

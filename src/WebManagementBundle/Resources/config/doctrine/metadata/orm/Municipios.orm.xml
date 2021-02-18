@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Municipios" table="municipios">
+    <id name="idMunicipio" type="smallint" column="id_municipio">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="idProvincia" type="smallint" column="id_provincia" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="codMunicipio" type="integer" column="cod_municipio" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">Código de muncipio DENTRO de la provincia, campo no único</option>
+      </options>
+    </field>
+    <field name="dc" type="integer" column="DC" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">Digito Control. El INE no revela cómo se calcula, secreto nuclear.</option>
+      </options>
+    </field>
+    <field name="nombre" type="string" column="nombre" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="default">''</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,47 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="d-flex align-items-center p-3 my-3 bg-purple rounded shadow-sm">
+        <div class="col-sm-6">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb my-2">
+                    <li class="breadcrumb-item"><a href="{{ path('web_management_home') }}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Gestión Tareas</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                <button id="nuevaTarea" type="button" class="btn btn-outline-primary">Añadir nueva Tarea</button>
+            </div>
+            <div class="col-12 col-sm-6 text-right">
+                <button type="button" id="Guardar" class="btn btn-outline-success" disabled>Guardar</button>
+                <button type="button" id="Eliminar" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal" disabled>Eliminar</button>
+                <button type="button" id="Cancelar" class="btn btn-outline-secondary" disabled>Cancelar</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-sm-12 mt-4">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Tarea</span>
+                    </div>
+                    <input id="textNuevaTarea" type="text" disabled class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                </div>
+            </div>
+            <div class="col-12 col-sm-12">
+              <span id="tareaVacia"></span>
+            </div>
+        </div>
+        <div class="row" id="gridTareas">
+          {% include "@WebManagement/tarea/gridTareas.html.twig" %}
+        </div>
+    </div>
+    {% include "@WebManagement/tarea/modalEliminar.html.twig" %}
+    {% include "@WebManagement/tarea/modalCancelar.html.twig" %}
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/tarea.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,19 @@
+tareas_index:
+  path:     '/'
+  methods:  [GET]
+  defaults: { _controller: WebManagementBundle:Tarea:index }
+
+tareas_nueva_ajax:
+  path:     '/nueva-ajax'
+  methods:  [GET]
+  defaults: { _controller: WebManagementBundle:Tarea:nuevaAjax }
+
+tareas_modificar_ajax:
+  path:     '/modificar-ajax'
+  methods:  [GET]
+  defaults: { _controller: WebManagementBundle:Tarea:modificarAjax }  
+
+tareas_eliminar_ajax:
+  path:     '/eliminar-ajax'
+  methods:  [GET]
+  defaults: { _controller: WebManagementBundle:Tarea:eliminarAjax }

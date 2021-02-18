@@ -1,0 +1,19 @@
+categorias_index:
+  path:     '/'
+  methods:  [GET]
+  defaults: { _controller: WebManagementBundle:Categoria:index }
+
+categorias_add:
+  path:     '/add/'
+  methods:  [GET]
+  defaults: { _controller: WebManagementBundle:Categoria:add }
+
+categorias_details:
+  path:     '/details/{id}'
+  methods:  [GET]
+  defaults: { _controller: WebManagementBundle:Categoria:details }
+
+categorias_ajax:
+  path:     '/categoria-ajax'
+  methods:  [POST]
+  defaults: { _controller: WebManagementBundle:Categoria:categoriaAjax }

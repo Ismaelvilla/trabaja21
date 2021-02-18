@@ -1,0 +1,10 @@
+<select class="form-control" id="poblacion" name="poblacion">
+    {% for municipio in municipios %}
+            {% if municipio.IdMunicipio == empresa.poblacion.IdMunicipio %}
+                <option selected value="{{ municipio.idMunicipio }}">{{ municipio.nombre }}</option>
+            {% else %}
+                <option value="{{ municipio.idMunicipio }}">{{ municipio.nombre }}</option>
+            {% endif %}
+    {% endfor %}
+</select>
+

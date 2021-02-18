@@ -1,0 +1,113 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <!-- Breadcrumbs de añadir/editar empresa -->
+    <div class="d-flex align-items-center p-3 my-3 bg-purple rounded shadow-sm">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb my-2">
+                <li class="breadcrumb-item"><a href="{{ path('web_management_home') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ path('empresas_index') }}">Empresas</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{% if empresa.nombre %}{{ empresa.nombre }}{% else %}Añadir Empresa{% endif %}</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="container pt-4 pt-sm-4 col-12 col-sm-8 mx-auto">
+        <div class="row">
+            <div class="col-12 col-sm-6 mx-auto text-center ">
+                <h6>Por favor rellene el formulario</h6>
+            </div>
+        </div>
+    </div>
+    <div class="container col-12 col-sm-8 pt-sm-4">
+        <form id="notificationForm" method="post" action="update">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('edit_notification') }}" />
+        <input type="hidden" name="id" id="idEmpresa" value="{{ empresa.id }}" />
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input required type="text" class="form-control" id="nombre" name="nombre" value="{{ empresa.nombre }}">
+                </div>
+            </div>
+            <div class="col-12 col-sm-6">
+                <div class="form-group">
+                    <label for="categoria">Categoría</label>
+                    <select class="form-control" id="categoria" name="categoria">
+                        {% for categoria in categorias %}
+                            {% if categoria.id == empresa.categoria.id %}
+                                <option selected value="{{ categoria.id }}">{{categoria.nombre }}</option>
+                            {% else %}
+                                <option value="{{ categoria.id }}">{{categoria.nombre }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6">
+                <div class="form-group">
+                    <label for="provincia">Provincia</label>
+                    <select class="form-control" id="provincia" name="provincia">
+                       {% for provincia in provincias %}
+                           {% if provincia.IdProvincia == empresa.provincia.IdProvincia %}
+                               <option selected value="{{ provincia.IdProvincia }}">{{ provincia.provincia }}</option>
+                           {% else %}
+                               <option value="{{ provincia.IdProvincia }}">{{ provincia.provincia }}</option>
+                           {% endif %}
+                      {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6">
+                <div class="form-group">
+                    <label for="poblacion">Población</label>
+                    <span id="cajaMunicipio">
+                        {% include "@WebManagement/Empresa/cajaMunicipio.html.twig" %}
+                    </span>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" value="{{ empresa.email }}">
+                </div>
+            </div>
+            <div class="col-12 col-sm-6">
+                <div class="form-group">
+                    <label for="prioridad">Prioridad</label>
+                    <select class="form-control" id="prioridad" name="prioridad">
+                        {% for i in 1..10 %}
+                            <option value="{{ i }}">{{ i }}</option>
+                        {%  endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12">
+                <div class="form-group">
+                    <label for="comentarios">Comentarios</label>
+                    <textarea class="form-control" name="comentarios" id="comentarios" rows="3">{{ empresa.comentario }}</textarea>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12">
+                <div class="form-group">
+                    <span id="seleccionarCategoria"></span>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12">
+                <div class="form-group text-center">
+                    <button type="submit" id="aceptar" class="btn btn-primary">
+                        Aceptar
+                    </button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Eliminar
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        </form>
+    </div>
+    {% include "@WebManagement/Empresa/modalEliminar.html.twig" %}
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/empresas.js') }}"></script>
+{% endblock %}
