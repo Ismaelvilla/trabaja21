@@ -1,10 +1,20 @@
 $(document).ready(function(){
    $('#categoriaForm').on('change', function(){
        $('#mensajeVacio').html('');
+       
+       //modificamos la url el 5 elemento y el ultimo lo eliminamos
+       var url = $(location).attr('href');
+       var pathname = $(location).attr('pathname');
+       var partesUrl = url.split('/'); 
+       partesUrl[5] = 'categoria-ajax';
+       partesUrl.pop(); 
+       var urlCambiada = partesUrl.join('/');
+       
        if($('#nombre').val()){
            $.ajax({
                type:'POST',
-               url:'/categorias/categoria-ajax',
+               url: urlCambiada,
+               // url:'/trabaja21/categorias/categoria-ajax',
                data: $('#categoriaForm').serialize(),
                success:function(respuesta){
                   // console.log('Finalizamos bien '+respuesta.redirect);
